@@ -20,7 +20,7 @@ public class ProgrammerService {
 		
 		List<Document> list = documentDao.getAllDocumentsInDatabase();
 		
-		for(int i = 0; i < list.size(); i++) {// Rozdzielenie pobranych dokumentów.
+		for(int i = 0; i < list.size(); i++) {// Rozdzielenie pobranych dokumentÃ³w.
 			tempDoc = list.get(i);
 			if (tempDoc.getClass() == ApplicationForHolidays.class) 
 				applications.add((ApplicationForHolidays) tempDoc);	
@@ -51,13 +51,13 @@ public class ProgrammerService {
 	/////Zadanie 7
 		executeAll(questionnaires, applications, users);	
 		
-		System.out.println("Czas wykonywania zadañ szeregowo: "  + time + "ms");
+		System.out.println("Czas wykonywania zadaÅ„ szeregowo: "  + time + "ms");
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	/////Zadanie 1
 	
 	private double avgAnswersPerQuestion(List<Questionnaire> qs) {
-		int questions = 0, answers = 0;
+		double questions = 0, answers = 0;
 		for(int i = 0; i < qs.size(); i++) {  
 			for(int j = 0; j < qs.get(i).getQuestions().size(); j++) {
 				questions++;
@@ -67,7 +67,7 @@ public class ProgrammerService {
 			}
 		}
 		double avg = answers / questions;
-		System.out.println("\nZadanie 1: Œrednia iloœæ odpowiedzi na pytanie wynosi: " + avg + "\n");
+		System.out.println("\nZadanie 1: Åšrednia iloÅ›Ä‡ odpowiedzi na pytanie wynosi: " + avg + "\n");
 		return avg;
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,17 +78,17 @@ public class ProgrammerService {
 		boolean sign_found = false;
 		System.out.print("\nZadanie 2 ");
 		for(int i = 0; i < apps.size(); i++) {
-			users.add(apps.get(i).getUserWhoRequestAboutHolidays());//Wype³nienie listy userów.
-			login_bytes = users.get(i).getLogin().getBytes(); // pobranie tekstu w postaci tablicy bajtów.
+			users.add(apps.get(i).getUserWhoRequestAboutHolidays());//WypeÅ‚nienie listy userÃ³w.
+			login_bytes = users.get(i).getLogin().getBytes(); // pobranie tekstu w postaci tablicy bajtÃ³w.
 			for(int j = 0; j < login_bytes.length; j++) {
-				if(login_bytes[j] < 0) {							// Polskie znaki przyjmuj¹ wartoœæ ujemn¹ w zapisie bajtowym. 
+				if(login_bytes[j] < 0) {							// Polskie znaki przyjmujÄ… wartoÅ›Ä‡ ujemnÄ… w zapisie bajtowym. 
 					System.out.print("Login z Polskim znakiem to ");
 					System.out.println(users.get(i).getLogin());
 					sign_found = true;
 				}
 			}
 		}  
-		return sign_found;// Metoda zwraca True jeœli jakakilwiek polski znak jest wykryty.	
+		return sign_found;// Metoda zwraca True jeÅ›li jakakilwiek polski znak jest wykryty.	
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////
 	//////Zadanie 3
@@ -97,12 +97,12 @@ public class ProgrammerService {
 		boolean isMistaken = false;
 		System.out.println("\n");
 		for(int i = 0; i < apps.size(); i++) {
-			if (apps.get(i).getSince().compareTo(apps.get(i).getTo()) >= 0) {//Poniewa¿ w dacie wystêpuje godzina, przyj¹³em, ¿e ta sama data to b³¹d. 
+			if (apps.get(i).getSince().compareTo(apps.get(i).getTo()) >= 0) {//PoniewaÅ¼ w dacie wystÄ™puje godzina, przyjÄ…Å‚em, Å¼e ta sama data to bÅ‚Ä…d. 
 				isMistaken = true;
-				System.out.println("Zadanie 3: U¿ytkownik o loginie: " + apps.get(i).getUserWhoRequestAboutHolidays().getLogin()+ " ma z³¹ datê");
+				System.out.println("Zadanie 3: UÅ¼ytkownik o loginie: " + apps.get(i).getUserWhoRequestAboutHolidays().getLogin()+ " ma zÅ‚Ä… datÄ™");
 			}
 		}
-		return isMistaken; // Metoda zwraca True jeœli jakakolwiek data jest ¿le wpisana.	
+		return isMistaken; // Metoda zwraca True jeÅ›li jakakolwiek data jest Å¼le wpisana.	
 	}
 	//////////////////////////////////////////////////////////////////////////////////////////
 	//////Zadanie 4/////////////
@@ -116,8 +116,8 @@ public class ProgrammerService {
 		System.out.println("\nZadanie 5:");
 		try {
 			Field f = User.class.getDeclaredField("salary");
-			f.setAccessible(true);// Wymuszenie dostêpu do zmiennej prywatnej.
-			System.out.println("\nWynagrodzenie przed zmian¹ wynosi : " + f.getDouble(u) + ".");   
+			f.setAccessible(true);// Wymuszenie dostÄ™pu do zmiennej prywatnej.
+			System.out.println("\nWynagrodzenie przed zmianÄ… wynosi : " + f.getDouble(u) + ".");   
 			f.setDouble(u, new_salary);
 			System.out.println("Wynagrodzenie po zmianie wynosi : " + f.getDouble(u) + ".");  
 			f.setAccessible(false);
@@ -129,8 +129,8 @@ public class ProgrammerService {
 	///// Zadanie 6
 	
 	private void doubleExecution(List<Questionnaire> qs, List<ApplicationForHolidays> apps, List<User> users) { 
-		System.out.println("\nZadanie 6: Zadanie 2 i 5 uruchomione w 2 watkach równlolegle\n");
-		ExecutorService _EXSE = Executors.newFixedThreadPool(2);//Ilosc w¹tków wykonywanych równolegle dla tego executora.
+		System.out.println("\nZadanie 6: Zadanie 2 i 5 uruchomione w 2 watkach rÃ³wnlolegle\n");
+		ExecutorService _EXSE = Executors.newFixedThreadPool(2);//Ilosc wÄ…tkÃ³w wykonywanych rÃ³wnolegle dla tego executora.
 		
 		_EXSE.execute(new Runnable() {
 			@Override
@@ -146,16 +146,16 @@ public class ProgrammerService {
 				salaryChanger(users.get(0), 4000);
 			}
 		});	
-		_EXSE.shutdown();// Wy³¹czenie executora po wykonaniu w¹tków (inaczej wpadnie w nieskoñczon¹ pêtle).
-		while (!_EXSE.isTerminated());// Zawieszenie g³ównego w¹tku a¿ zakoñcz¹ siê wszystkie w¹tki, aby poprawnie zmierzyæ czas wykonywania.
+		_EXSE.shutdown();// WyÅ‚Ä…czenie executora po wykonaniu wÄ…tkÃ³w (inaczej wpadnie w nieskoÅ„czonÄ… pÄ™tle).
+		while (!_EXSE.isTerminated());// Zawieszenie gÅ‚Ã³wnego wÄ…tku aÅ¼ zakoÅ„czÄ… siÄ™ wszystkie wÄ…tki, aby poprawnie zmierzyÄ‡ czas wykonywania.
 	}
 	/////////////////////////////////////////////////////////////////////////////
 	///// Zadanie 7
-	//// Uruchamianie zadañ 1 - 6 w równoleg³ych w¹tkach.
+	//// Uruchamianie zadaÅ„ 1 - 6 w rÃ³wnolegÅ‚ych wÄ…tkach.
 	private void executeAll(List<Questionnaire> qs, List<ApplicationForHolidays> apps, List<User> users) {
 		System.out.println("\n\n\nZADANIE 7:");
 		long time = System.currentTimeMillis();
-		ExecutorService _EXSE = Executors.newFixedThreadPool(6);//Ilosc w¹tków wykonywanych równolegle dla tego executora.
+		ExecutorService _EXSE = Executors.newFixedThreadPool(6);//Ilosc wÄ…tkÃ³w wykonywanych rÃ³wnolegle dla tego executora.
 		
 		_EXSE.execute(new Runnable() {
 			@Override
@@ -194,8 +194,8 @@ public class ProgrammerService {
 				doubleExecution(qs, apps, users);
 			}
 		});	
-		_EXSE.shutdown();// Wy³¹czenie executora po wykonaniu w¹tków (inaczej wpadnie w nieskoñczon¹ pêtle).
-		while (!_EXSE.isTerminated());// Zawieszenie g³ównego w¹tku a¿ zakoñcz¹ siê wszystkie w¹tki, aby poprawnie zmierzyæ czas wykonywania.
-		System.out.println("\nCzas wykonywania zadañ równolegle: " + (System.currentTimeMillis() - time) + " ms");
+		_EXSE.shutdown();// WyÅ‚Ä…czenie executora po wykonaniu wÄ…tkÃ³w (inaczej wpadnie w nieskoÅ„czonÄ… pÄ™tle).
+		while (!_EXSE.isTerminated());// Zawieszenie gÅ‚Ã³wnego wÄ…tku aÅ¼ zakoÅ„czÄ… siÄ™ wszystkie wÄ…tki, aby poprawnie zmierzyÄ‡ czas wykonywania.
+		System.out.println("\nCzas wykonywania zadaÅ„ rÃ³wnolegle: " + (System.currentTimeMillis() - time) + " ms");
 	}
 }
