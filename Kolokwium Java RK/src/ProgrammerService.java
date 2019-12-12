@@ -7,7 +7,6 @@ import java.util.concurrent.Executors;
 import pl.kolokwium.dc.*;
 import pl.kolokwium.org.User;
 
-
 public class ProgrammerService {
 	public void execute(DocumentDao documentDao) {
 		
